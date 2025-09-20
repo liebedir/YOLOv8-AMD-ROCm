@@ -1,6 +1,7 @@
 from ultralytics import YOLO
 import torch, time
 import onnxruntime as ort
+import numpy as np
 
 # 设定推理设备为CPU，可根据实际情况改为"GPU"或"NPU"
 
@@ -27,12 +28,13 @@ output_names = list(map(lambda output:output.name, outputs))
 # 2. 用onnxruntime替代YOLOv8-seg的原生推理计算方法
 def ovep_infer(*args):
     result = ovep_model.run(output_names, {input_names: args[0].cpu().numpy()})
+    print(np.shape(result[0]))
+    print(np.shape(result[1]))
     return torch.from_numpy(result[0]), torch.from_numpy(result[1])
 
 seg_model.predictor.inference = ovep_infer
 seg_model.predictor.model.pt = False
 
-# 3. 执行基于ONNXRuntime OpenVINO™执行提供者的推理计算
 # 复用YOLOv8-seg的原生前后处理程序
 for i in range(1000):
 
