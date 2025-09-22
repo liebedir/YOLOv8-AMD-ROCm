@@ -35,6 +35,19 @@ pip3 install onnxruntime-rocm -f https://repo.radeon.com/rocm/manylinux/rocm-rel
 
 Set the url based the ROCm verison installed. Please refer to [this link]( https://rocm.docs.amd.com/projects/radeon/en/latest/docs/install/native_linux/install-onnx.html)
 
+Install pytorch based on the ROCm version you installed.[this link]( https://pytorch.org/get-started/locally/)
+```bash
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
+```
+<div style="text-align: center">
+    <image src = "./images/pytorch.png">
+</div>
+
+Install ultralytics
+```bash
+pip install ultralytics
+```
+
 Start YOLOv8 test
 ```bash
 python yolo-onnx.py
