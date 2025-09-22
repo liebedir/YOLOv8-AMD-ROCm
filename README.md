@@ -37,7 +37,7 @@ Set the url based the ROCm verison installed. Please refer to [this link]( https
 
 Start YOLOv8 test
 ```bash
-pip3 install onnxruntime-rocm -f https://repo.radeon.com/rocm/manylinux/rocm-rel-x.x.x/
+python yolo-onnx.py
 ```
 
 <div style = "text-align: center">
